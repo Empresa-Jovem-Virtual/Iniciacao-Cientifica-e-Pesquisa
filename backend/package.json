@@ -11,9 +11,10 @@
   },
   "nodemonConfig": {
     "watch": [
-      "src/",
+      "app/",
       "routes/",
       "resources/",
+      "src/",
       "server.ts"
     ],
     "ext": "ts, html",
@@ -23,6 +24,7 @@
     "exec": "./node_modules/.bin/ts-node -r tsconfig-paths/register ."
   },
   "_moduleAliases": {
+    "@app": "dist/app",
     "@services": "dist/services",
     "@daos": "dist/daos",
     "@entities": "dist/entities",

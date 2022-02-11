@@ -11,5 +11,9 @@ router.get('/users', (request: Request, response: Response) => {
   response.render('user', { title: 'Users' })
 })
 
+router.get('/categories', (request: Request, response: Response) => {
+  response.render('category', { title: 'Categories' })
+})
+
 // Export default.
 export default router

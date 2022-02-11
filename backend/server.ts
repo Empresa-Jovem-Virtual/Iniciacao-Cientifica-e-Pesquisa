@@ -64,9 +64,16 @@ app.set('view engine', 'pug')
 const staticDir = path.join(__dirname, 'public')
 app.use(express.static(staticDir))
 
-// Serve index.html file
-app.get('*', (_: Request, res: Response) => {
-  res.sendFile('index.html', { root: staticDir })
+// error handler
+// @ts-ignore
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message
+  res.locals.error = req.app.get('env') === 'development' ? err : {}
+
+  // render the error page
+  res.status(err.status || 500)
+  res.render('error')
 })
 
 // Export here and start in a diff file (for testing).

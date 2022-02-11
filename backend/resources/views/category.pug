@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    h1=title
+
+    |  <!-- Add Categories -->
+    |  <div class="categories-column add-user-col">
+    |      <div class="column-header">Add Category:</div>
+    |      <div>
+    |          <input
+    |                  id="name-input"
+    |                  placeholder="Name"
+    |          >
+    |      </div>
+    |      <div>
+    |          <button id="add-user-btn">Add</button>
+    |      </div>
+    |  </div>
+    |
+    |  <!-- Display Categories -->
+    |  <div class="categories-column">
+    |      <div class="column-header">Categories:</div>
+    |      <div id="all-categories-anchor"></div>
+    |  </div>
+
+    script(src='/scripts/categories.js')
