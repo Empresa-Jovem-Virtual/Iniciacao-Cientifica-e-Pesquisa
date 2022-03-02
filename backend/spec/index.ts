@@ -30,7 +30,7 @@ jasmine.loadConfig({
     stopSpecOnExpectationFailure: false,
 });
 
-// Run all or a single unit-test
+// Run search or a single unit-test
 let execResp: Promise<jasmine.JasmineDoneInfo> | undefined;
 if (options.testFile) {
     const testFile = options.testFile as string;

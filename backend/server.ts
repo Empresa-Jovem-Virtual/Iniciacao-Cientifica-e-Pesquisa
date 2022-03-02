@@ -1,18 +1,23 @@
-import cookieParser from 'cookie-parser'
-import morgan from 'morgan'
 import path from 'path'
-import helmet from 'helmet'
 
 import express, { NextFunction, Request, Response } from 'express'
 import StatusCodes from 'http-status-codes'
+import logger from 'jet-logger'
+import cookieParser from 'cookie-parser'
+import morgan from 'morgan'
+import jsend from 'jsend'
+import helmet from 'helmet'
+
 import 'express-async-errors'
+import 'reflect-metadata'
 
 import apiRouter from './routes/api'
 import webRouter from './routes/web'
-import logger from 'jet-logger'
 import { CustomError } from '@shared/errors'
 
-// Constants
+// https://github.com/omniti-labs/jsend
+
+// app
 const app = express()
 
 /***********************************************************************************
@@ -23,6 +28,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
+app.use(jsend.middleware)
 
 // Show routes called in console during development
 if (process.env.NODE_ENV === 'development') {
