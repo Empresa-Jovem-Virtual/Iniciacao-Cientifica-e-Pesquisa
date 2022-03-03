@@ -1,10 +1,10 @@
 import { getRepository } from 'typeorm'
 import { NextFunction, Request, Response } from 'express'
-import { Category } from '@app/Domains/General/Category'
+import { User } from '@app/Domains/Admin/User'
 
-export class CategoryController {
+export class UserController {
 
-  private userRepository = getRepository(Category)
+  private userRepository = getRepository(User)
 
   async all (request: Request, response: Response, next: NextFunction) {
     return this.userRepository.find()
@@ -19,7 +19,7 @@ export class CategoryController {
   }
 
   async remove (request: Request, response: Response, next: NextFunction) {
-    const category = await this.userRepository.findOne(request.params.id) as Category
-    await this.userRepository.remove(category)
+    const user = await this.userRepository.findOne(request.params.id) as User
+    await this.userRepository.remove(user)
   }
 }

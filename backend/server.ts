@@ -13,7 +13,7 @@ import 'reflect-metadata'
 
 import apiRouter from './routes/api'
 import webRouter from './routes/web'
-import { CustomError } from '@shared/errors'
+import { CustomError } from '@app/Shared/errors'
 
 // https://github.com/omniti-labs/jsend
 

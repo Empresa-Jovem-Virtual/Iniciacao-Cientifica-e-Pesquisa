@@ -1,0 +1,6 @@
+POST localhost:8000/api/categories
+Content-Type: application/json
+
+{
+  "name": "Database"
+}

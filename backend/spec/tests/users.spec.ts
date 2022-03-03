@@ -5,9 +5,9 @@ import { SuperTest, Test, Response } from 'supertest';
 import app from 'server';
 import userDao from '@daos/user-dao';
 import User, { IUser } from '@models/user-model';
-import { pErr } from '@shared/functions';
+import { pErr } from '@app/Shared/functions';
 import { p as userPaths } from '@routes/api/user';
-import { ParamMissingError, UserNotFoundError } from '@shared/errors';
+import { ParamMissingError, UserNotFoundError } from '@app/Shared/errors';
 
 type TReqBody = string | object | undefined;
 

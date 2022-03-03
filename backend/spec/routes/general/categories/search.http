@@ -1,0 +1,2 @@
+GET localhost:8000/api/categories
+Content-Type: application/json

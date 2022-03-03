@@ -4,17 +4,22 @@
   "scripts": {
     "build": "./node_modules/.bin/ts-node build.ts",
     "lint": "eslint . --ext .ts",
-    "start": "node -r module-alias/register ./dist --env=production",
+    "start": "ts-node src/index.ts",
     "dev": "nodemon",
     "test": "nodemon --config ./spec/nodemon.json",
-    "test:no-reloading": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./spec"
+    "test:no-reloading": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./spec",
+    "typeorm:init": "typeorm init --database mysql --express",
+    "typeorm:create": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:create -n create",
+    "typeorm:generate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate -n generate",
+    "typeorm:migrate": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
   },
   "nodemonConfig": {
     "watch": [
       "app/",
       "routes/",
       "resources/",
-      "src/",
+      "database/",
       "server.ts"
     ],
     "ext": "ts, html",
@@ -83,7 +88,9 @@
     "mysql2": "^2.3.3",
     "pug": "^3.0.2",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.2.44"
+    "typeorm": "0.2.44",
+    "mysql": "^2.14.1",
+    "body-parser": "^1.19.1"
   },
   "devDependencies": {
     "@types/command-line-args": "^5.2.0",
@@ -94,7 +101,7 @@
     "@types/jasmine": "^3.10.3",
     "@types/jsonfile": "^6.0.1",
     "@types/morgan": "^1.9.3",
-    "@types/node": "^17.0.21",
+    "@types/node": "^16.11.10",
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.11.0",
     "@typescript-eslint/parser": "^5.11.0",
@@ -104,8 +111,8 @@
     "jasmine": "^4.0.2",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2",
-    "ts-node": "^10.5.0",
+    "ts-node": "10.4.0",
     "tsconfig-paths": "^3.12.0",
-    "typescript": "^4.5.5"
+    "typescript": "4.5.2"
   }
 }

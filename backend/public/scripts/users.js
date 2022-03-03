@@ -8,7 +8,7 @@ function displayUsers () {
   httpGet('/api/users')
     .then(response => response.json())
     .then((response) => {
-      var allUsers = response.users
+      var allUsers = response.data
       // Empty the anchor
       var allUsersAnchor = document.getElementById('all-users-anchor')
       allUsersAnchor.innerHTML = ''
@@ -23,8 +23,8 @@ function getUserDisplayElement (user) {
   return `<div class="user-display-ele">
 
         <div class="normal-view">
-            <div>Name: ${user.name}</div>
-            <div>Email: ${user.email}</div>
+            <div>Name: ${user.firstName}</div>
+            <div>Email: ${user.lastName}</div>
             <button class="edit-user-btn" data-user-id="${user.id}">
                 Edit
             </button>
@@ -35,10 +35,10 @@ function getUserDisplayElement (user) {
         
         <div class="edit-view">
             <div>
-                Name: <input class="name-edit-input" value="${user.name}">
+                Name: <input class="name-edit-input" value="${user.firstName}">
             </div>
             <div>
-                Email: <input class="email-edit-input" value="${user.email}">
+                Email: <input class="email-edit-input" value="${user.lastName}">
             </div>
             <button class="submit-edit-btn" data-user-id="${user.id}">
                 Submit
@@ -78,10 +78,8 @@ function addUser () {
   var nameInput = document.getElementById('name-input')
   var emailInput = document.getElementById('email-input')
   var data = {
-    user: {
-      name: nameInput.value,
-      email: emailInput.value
-    },
+    firstName: nameInput.value,
+    lastName: emailInput.value,
   }
   httpPost('/api/users', data)
     .then(() => {

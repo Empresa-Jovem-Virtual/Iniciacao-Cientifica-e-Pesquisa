@@ -1,16 +1,25 @@
-import { Router } from 'express'
-import CategoryController from '@app/Http/General/CategoryController'
+import { CategoryController } from '@app/Http/General/CategoryController'
 
-const router = Router()
-
-router.get('/', CategoryController.index)
-
-router.post('/', CategoryController.store)
-
-// router.put('/update/:id', async (_: Request, res: Response) => res.send('put'))
-
-// router.delete('/delete/:id', async (_: Request, res: Response) => res.send('delete'))
-
-// Export default
-export default router
-
+export default [
+  {
+    method: 'get',
+    route: '/categories',
+    controller: CategoryController,
+    action: 'all'
+  }, {
+    method: 'get',
+    route: '/categories/:id',
+    controller: CategoryController,
+    action: 'one'
+  }, {
+    method: 'post',
+    route: '/categories',
+    controller: CategoryController,
+    action: 'save'
+  }, {
+    method: 'delete',
+    route: '/categories/:id',
+    controller: CategoryController,
+    action: 'remove'
+  }
+]

@@ -1,0 +1,34 @@
+version: '3'
+
+# Networks
+networks:
+  # Internal network
+  internal:
+    driver: bridge
+
+# Volumes
+volumes:
+  # MySQL volume
+  iniciacao-mysql_data:
+    driver: local
+
+# Services
+services:
+
+  # MySQL
+  iniciacao-mysql:
+    image: mysql:5.7
+    container_name: iniciacao-mysql
+    networks:
+      - internal
+    volumes:
+      - iniciacao-mysql_data:/var/lib/mysql
+      - .:/var/www/app
+    working_dir: /var/www/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=database
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    ports:
+      - "3306:3306"

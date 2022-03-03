@@ -1,0 +1,8 @@
+POST localhost:8000/api/users
+Content-Type: application/json
+
+{
+  "firstName": "William",
+  "lastName": "Correa",
+  "age": 40
+}

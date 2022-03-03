@@ -1,12 +1,16 @@
-import './src/pre-start' // Must be the first import
+// Must be the first import
+import './bootstrap'
+
 import logger from 'jet-logger'
+import { createConnection } from 'typeorm'
+
 import server from './server'
 
-// Constants
-const serverStartMsg = 'Express server started on port: ',
-  port = (process.env.PORT || 8000)
+const port = (process.env.PORT || 8000)
 
-// Start server
-server.listen(port, () => {
-  logger.info(serverStartMsg + port)
+// start server
+server.listen(port, async () => {
+  logger.info(`Express server started on port: ${port}`)
+  await createConnection()
+  logger.info(`Database connected`)
 })
